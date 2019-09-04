@@ -1,0 +1,8 @@
+import org.grails.samples.Speciality
+
+model {
+	Iterable<Speciality> specialityList
+}
+
+json tmpl.speciality(specialityList ?: [])
+

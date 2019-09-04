@@ -1,0 +1,7 @@
+import org.grails.samples.Speciality
+
+model {
+	Speciality speciality
+}
+
+json tmpl.speciality(speciality)
