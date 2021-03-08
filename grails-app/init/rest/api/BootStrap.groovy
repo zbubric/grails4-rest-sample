@@ -9,17 +9,18 @@ import demo.Publisher
 class BootStrap {
 
     def init = { servletContext ->
+        Author.withTransaction {
         println 'Hello from bootstrap'
-        
+
         // Stand-alone category
-        def science = new Category(name: 'science').save(failOnError: true)        
-        
+        def science = new Category(name: 'science').save(failOnError: true)
+
         // publishers
         def manning = new Publisher(name: 'manning').save(failOnError: true)
         def amazon =   new Publisher(name: 'amazon').save(failOnError: true)
 
         
-        // Create single author 
+        // Create single author
         def johnDoe = new Author(name: 'John Doe').save(failOnError: true)
 
         // Create-cascade from Author-Book-Category with explicid 'new' and 'save' Book
@@ -35,8 +36,7 @@ class BootStrap {
             .addToBooks(title: 'Second book', publisher: manning)
             .addToBooks(title: 'Third book', publisher: manning)
             .save(failOnError: true)
-
-                                
+        }
     }
 
     def destroy = {
